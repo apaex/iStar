@@ -1,0 +1,26 @@
+packages:
+  - !include common.yaml
+
+substitutions:
+  device_name: "istar"
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+external_components:
+  - source: components
+
+esp32_ble_tracker:
+
+ble_client:
+  - id: ble_istar1
+    mac_address: 2B:80:03:D9:3E:8E
+
+light:
+  - platform: istar
+    ble_client_id: ble_istar1
+    name: AndryLight
+    default_transition_length: 5s
+
