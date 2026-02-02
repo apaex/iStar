@@ -45,7 +45,6 @@ class IStarOutput : public light::LightOutput, public ble_client::BLEClientNode,
   esp32_ble_tracker::ESPBTUUID sensors_read_characteristic_uuid_;
 
   bool last_binary_{false};
-
   float last_red_{0};
   float last_green_{0};
   float last_blue_{0};

@@ -22,5 +22,5 @@ light:
   - platform: istar
     ble_client_id: ble_istar1
     name: AndryLight
-    default_transition_length: 5s
+#    default_transition_length: 0s
 

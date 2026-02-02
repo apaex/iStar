@@ -56,6 +56,8 @@ void IStarOutput::write_state(light::LightState *state) {
   state->current_values_as_rgbww(&red, &green, &blue, &cold_white, &warm_white, true);
   esphome::light::ColorMode mode = state->current_values.get_color_mode();
 
+  binary = binary || brightness > 0;
+
   if (binary != last_binary_)
   {
     last_binary_ = binary;
@@ -77,18 +79,16 @@ void IStarOutput::write_state(light::LightState *state) {
     if (last_red_ != cmd.r || last_green_ != cmd.g || last_blue_ != cmd.b || last_cold_white_ != cmd.cw || last_warm_white_ != cmd.ww || last_brightness_ != cmd.brightness) {
       write_ble_((uint8_t *)&cmd, sizeof(cmd));
 
-      last_red_ = red;
-      last_green_ = green;
-      last_blue_ = blue;
-      last_cold_white_ = cold_white;
-      last_warm_white_ = warm_white;
-      last_brightness_ = brightness;
+      last_red_ = cmd.r;
+      last_green_ = cmd.g;
+      last_blue_ = cmd.b;
+      last_cold_white_ = cmd.cw;
+      last_warm_white_ = cmd.ww;
+      last_brightness_ = cmd.brightness;
     }
   }
 
   //ESP_LOGD(TAG, "write_state(red = %f, green = %f, blue = %f, cold_white = %f, warm_white = %f) brightness=%f, binary=%d", red, green, blue, cold_white, warm_white, brightness, binary);
-
-
 }
 
 void IStarOutput::write_ble_(uint8_t * req, size_t sz) {
