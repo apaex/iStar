@@ -7,7 +7,7 @@ substitutions:
 esp32:
   board: esp32dev
   framework:
-    type: arduino
+    type: esp-idf
 
 external_components:
   - source: components
@@ -21,6 +21,10 @@ ble_client:
 light:
   - platform: istar
     ble_client_id: ble_istar1
-    name: AndryLight
+    name: ${device_name} Light
 #    default_transition_length: 0s
 
+sensor:
+  - platform: ble_rssi
+    mac_address: 2B:80:03:D9:3E:8E
+    name: ${device_name} RSSI value

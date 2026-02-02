@@ -38,8 +38,8 @@ void IStarOutput::publish_state_(const bool is_on, const uint8_t brightness) {
   }
 }
 
-struct CmdOnOff {  byte b0=0xc1, onoff=0, b2=0x1c; };
-struct CmdSet   {  byte b0=0x56, r=0, g=0, b=0, mode=0x0f, ww=0, cw=0, brightness=0, b8=0x00, b9=0xaa; };
+struct CmdOnOff {  uint8_t b0=0xc1, onoff=0, b2=0x1c; };
+struct CmdSet   {  uint8_t b0=0x56, r=0, g=0, b=0, mode=0x0f, ww=0, cw=0, brightness=0, b8=0x00, b9=0xaa; };
 
 void IStarOutput::write_state(light::LightState *state) {
   bool binary;
